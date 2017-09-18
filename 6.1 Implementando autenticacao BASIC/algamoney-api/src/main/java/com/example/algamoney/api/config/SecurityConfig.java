@@ -20,12 +20,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/categorias").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.httpBasic().and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.csrf().disable();
+			.antMatchers("/categorias")
+				.permitAll()
+			.anyRequest()
+				.authenticated()
+			.and()
+			.httpBasic() // basic authentication
+			.and()
+			.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // stateless session
+			.and()
+			.csrf()
+				.disable(); // disable csrf
 	}
 	
 }
