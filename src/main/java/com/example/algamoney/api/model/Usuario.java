@@ -22,8 +22,7 @@ public class Usuario {
 	private String senha;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "codigo_usuario")
-		, inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
+	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
 	private List<Permissao> permissoes;
 
 	public Long getCodigo() {
@@ -66,6 +65,9 @@ public class Usuario {
 		this.permissoes = permissoes;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,5 +92,4 @@ public class Usuario {
 			return false;
 		return true;
 	}
-
 }

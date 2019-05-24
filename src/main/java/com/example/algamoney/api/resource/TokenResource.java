@@ -17,7 +17,7 @@ import com.example.algamoney.api.config.property.AlgamoneyApiProperty;
 @RestController
 @RequestMapping("/tokens")
 public class TokenResource {
-	
+
 	@Autowired
 	private AlgamoneyApiProperty algamoneyApiProperty;
 
@@ -28,9 +28,9 @@ public class TokenResource {
 		cookie.setSecure(algamoneyApiProperty.getSeguranca().isEnableHttps());
 		cookie.setPath(req.getContextPath() + "/oauth/token");
 		cookie.setMaxAge(0);
-		
+
 		resp.addCookie(cookie);
 		resp.setStatus(HttpStatus.NO_CONTENT.value());
 	}
-	
+
 }

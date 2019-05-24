@@ -9,12 +9,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cidade")
 public class Cidade {
-	
+
 	@Id
 	private Long codigo;
-	
+
 	private String nome;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_estado")
 	private Estado estado;
@@ -34,15 +34,18 @@ public class Cidade {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public Estado getEstado() {
 		return estado;
 	}
-	
+
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

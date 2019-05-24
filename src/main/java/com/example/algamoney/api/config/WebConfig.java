@@ -7,4 +7,5 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class WebConfig {
 
+	// Classe que permite agendamento de tarefas.
 }

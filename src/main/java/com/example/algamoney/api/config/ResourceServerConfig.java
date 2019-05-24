@@ -16,19 +16,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/categorias").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.csrf().disable();
+
+		// Aqui está excluído endpoints da autenticação.
+		http.authorizeRequests().antMatchers("/categorias").permitAll().anyRequest().authenticated().and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable();
 	}
-	
+
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.stateless(true);
 	}
-	
+
 	@Bean
 	public MethodSecurityExpressionHandler createExpressionHandler() {
 		return new OAuth2MethodSecurityExpressionHandler();

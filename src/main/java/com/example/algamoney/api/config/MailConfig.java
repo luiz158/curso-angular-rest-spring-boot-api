@@ -10,9 +10,17 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import com.example.algamoney.api.config.property.AlgamoneyApiProperty;
 
+/**
+ * 
+ * @author alves
+ * 
+ *         Classe responsável por criar a instância de conexão com o servidor de
+ *         email - FTP
+ *
+ */
 @Configuration
 public class MailConfig {
-	
+
 	@Autowired
 	private AlgamoneyApiProperty property;
 
@@ -23,14 +31,14 @@ public class MailConfig {
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
 		props.put("mail.smtp.connectiontimeout", 10000);
-		
+
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setJavaMailProperties(props);
 		mailSender.setHost(property.getMail().getHost());
 		mailSender.setPort(property.getMail().getPort());
 		mailSender.setUsername(property.getMail().getUsername());
 		mailSender.setPassword(property.getMail().getPassword());
-		
+
 		return mailSender;
 	}
 }

@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
+/**
+ * Classe responsável por configurar o AUTH 2 no projeto.
+ */
 @Profile("oauth-security")
 @Configuration
 @EnableWebSecurity
@@ -19,13 +22,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableAuthorizationServer
 @EnableResourceServer
 public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Bean
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

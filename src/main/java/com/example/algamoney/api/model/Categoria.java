@@ -36,6 +36,9 @@ public class Categoria {
 		this.nome = nome;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,5 +63,4 @@ public class Categoria {
 			return false;
 		return true;
 	}
-
 }

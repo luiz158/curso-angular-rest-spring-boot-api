@@ -28,6 +28,9 @@ public class Permissao {
 		this.descricao = descricao;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,5 +55,4 @@ public class Permissao {
 			return false;
 		return true;
 	}
-
 }

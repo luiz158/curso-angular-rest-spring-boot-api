@@ -29,7 +29,7 @@ public class Lancamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	@NotNull
 	private String descricao;
 
@@ -58,18 +58,18 @@ public class Lancamento {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "codigo_pessoa")
-	private Pessoa pessoa; 
-	
+	private Pessoa pessoa;
+
 	private String anexo;
-	
+
 	@Transient
 	private String urlAnexo;
-	
+
 	@JsonIgnore
 	public boolean isReceita() {
 		return TipoLancamento.RECEITA.equals(tipo);
 	}
-	
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -158,6 +158,9 @@ public class Lancamento {
 		this.urlAnexo = urlAnexo;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -5,9 +5,8 @@ import java.math.BigDecimal;
 import com.example.algamoney.api.model.Categoria;
 
 public class LancamentoEstatisticaCategoria {
-	
+
 	private Categoria categoria;
-	
 	private BigDecimal total;
 
 	public LancamentoEstatisticaCategoria(Categoria categoria, BigDecimal total) {

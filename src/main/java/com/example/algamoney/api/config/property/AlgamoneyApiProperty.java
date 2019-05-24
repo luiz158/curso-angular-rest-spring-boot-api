@@ -8,15 +8,15 @@ public class AlgamoneyApiProperty {
 	private String originPermitida = "http://localhost:8000";
 
 	private final Seguranca seguranca = new Seguranca();
-	
+
 	private final Mail mail = new Mail();
-	
+
 	private final S3 s3 = new S3();
-	
+
 	public S3 getS3() {
 		return s3;
 	}
-	
+
 	public Mail getMail() {
 		return mail;
 	}
@@ -32,19 +32,19 @@ public class AlgamoneyApiProperty {
 	public void setOriginPermitida(String originPermitida) {
 		this.originPermitida = originPermitida;
 	}
-	
+
 	public static class S3 {
-		
+
 		private String accessKeyId;
-		
+
 		private String secretAccessKey;
-		
+
 		private String bucket = "aw-algamoney-arquivos";
-		
+
 		public String getBucket() {
 			return bucket;
 		}
-		
+
 		public void setBucket(String bucket) {
 			this.bucket = bucket;
 		}
@@ -80,13 +80,13 @@ public class AlgamoneyApiProperty {
 	}
 
 	public static class Mail {
-		
+
 		private String host;
-		
+
 		private Integer port;
-		
+
 		private String username;
-		
+
 		private String password;
 
 		public String getHost() {

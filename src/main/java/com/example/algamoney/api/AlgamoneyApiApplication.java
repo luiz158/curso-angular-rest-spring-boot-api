@@ -7,16 +7,23 @@ import org.springframework.context.ApplicationContext;
 
 import com.example.algamoney.api.config.property.AlgamoneyApiProperty;
 
+/**
+ * 
+ * @author malves
+ * 
+ *         Classe main responsável por executar o projeto SpringBoot
+ *
+ */
 @SpringBootApplication
 @EnableConfigurationProperties(AlgamoneyApiProperty.class)
 public class AlgamoneyApiApplication {
-	
+
 	private static ApplicationContext APPLICATION_CONTEXT;
 
 	public static void main(String[] args) {
 		APPLICATION_CONTEXT = SpringApplication.run(AlgamoneyApiApplication.class, args);
 	}
-	
+
 	public static <T> T getBean(Class<T> type) {
 		return APPLICATION_CONTEXT.getBean(type);
 	}

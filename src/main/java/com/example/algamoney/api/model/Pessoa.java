@@ -33,11 +33,10 @@ public class Pessoa {
 
 	@NotNull
 	private Boolean ativo;
-	
+
 	@JsonIgnoreProperties("pessoa")
 	@Valid
-	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL,
-			orphanRemoval = true)
+	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Contato> contatos;
 
 	public Long getCodigo() {
@@ -71,21 +70,24 @@ public class Pessoa {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+
 	public List<Contato> getContatos() {
 		return contatos;
 	}
-	
+
 	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
 	}
-	
+
 	@JsonIgnore
 	@Transient
 	public boolean isInativo() {
 		return !this.ativo;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,5 +112,4 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-	
 }

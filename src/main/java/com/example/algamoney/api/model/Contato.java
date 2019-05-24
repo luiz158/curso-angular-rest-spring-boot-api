@@ -15,21 +15,21 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "contato")
 public class Contato {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	@NotEmpty
 	private String nome;
-	
+
 	@Email
 	@NotNull
 	private String email;
-	
+
 	@NotEmpty
 	private String telefone;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_pessoa")
 	private Pessoa pessoa;
@@ -74,6 +74,9 @@ public class Contato {
 		this.pessoa = pessoa;
 	}
 
+	/* ########################################### */
+	/* HASH CODE AND EQUALS */
+	/* ########################################### */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
