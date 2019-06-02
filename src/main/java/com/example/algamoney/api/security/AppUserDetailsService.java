@@ -27,6 +27,12 @@ public class AppUserDetailsService implements UserDetailsService {
 		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
 		Usuario usuario = usuarioOptional
 				.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
+
+		if (usuario.getAtivo() == 0)
+		{
+			throw new UsernameNotFoundException("Usuário inativado.");
+		}
+
 		return new UsuarioSistema(usuario, getPermissoes(usuario));
 	}
 

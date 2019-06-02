@@ -20,6 +20,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+	private Integer ativo;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
@@ -56,6 +57,10 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public Integer getAtivo() { return ativo; }
+
+	public void setAtivo(Integer ativo) { this.ativo = ativo; }
 
 	public List<Permissao> getPermissoes() {
 		return permissoes;
