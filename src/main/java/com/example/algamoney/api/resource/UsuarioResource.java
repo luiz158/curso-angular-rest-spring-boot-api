@@ -59,4 +59,10 @@ public class UsuarioResource {
         usuarioService.atualizarPropriedadeAtivo(codigo, ativo);
     }
 
+    @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_GERENCIAR_USUARIOS')")
+    public Page<Usuario> pesquisar(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable) {
+        return usuarioRepository.findByNomeContaining(nome, pageable);
+    }
+
 }
