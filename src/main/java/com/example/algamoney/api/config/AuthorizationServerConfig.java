@@ -38,15 +38,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory()
-				.withClient("angular").secret("$2a$10$4CvdsdqhNu/A1ERtlyqOYeSbwnRbL7xCbPclZ7k3o6HvWw0oU3v1u") // @ngul@r0
+		clients.inMemory().withClient("angular").secret("$2a$10$4CvdsdqhNu/A1ERtlyqOYeSbwnRbL7xCbPclZ7k3o6HvWw0oU3v1u") // @ngul@r0
 				.scopes("read", "write").authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(60 * 60 * 24 * 365) // 1 Ano
-				.refreshTokenValiditySeconds(60 * 60) // 1 Hora
-				.and()
-				.withClient("mobile").secret("$2a$10$KJRZ.d9lgifvJU420wX7Oeb2sA3mgnGjv9iyUWNqcN1RxjXnKfcKK") // m0b1l30
-				.scopes("read").authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(1800)
+				.accessTokenValiditySeconds(1800).refreshTokenValiditySeconds(3600 * 24).and().withClient("mobile")
+				.secret("$2a$10$KJRZ.d9lgifvJU420wX7Oeb2sA3mgnGjv9iyUWNqcN1RxjXnKfcKK") // m0b1l30
+				.scopes("read").authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(1800)
 				.refreshTokenValiditySeconds(3600 * 24);
 	}
 
