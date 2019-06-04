@@ -82,6 +82,13 @@ public class LancamentoResource {
 		return this.lancamentoRepository.porDia(LocalDate.now());
 	}
 
+	@GetMapping("/estatisticas/por-dia-mes")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public List<LancamentoEstatisticaDia> porDiaMes(
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate mes) {
+		return this.lancamentoRepository.porDia(mes);
+	}
+
 	@GetMapping("/estatisticas/por-categoria")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public List<LancamentoEstatisticaCategoria> porCategoria() {
