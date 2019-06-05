@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.json.*;
 
 import com.example.algamoney.api.event.RecursoCriadoEvent;
 import com.example.algamoney.api.model.Pessoa;
@@ -50,6 +53,24 @@ public class UsuarioResource {
         Usuario usuarioSalvo = usuarioService.salvar(usuario);
         publisher.publishEvent(new RecursoCriadoEvent(this, response, usuarioSalvo.getCodigo()));
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    }
+
+    @PostMapping("/nova-senha")
+    public ResponseEntity<Usuario> novaSenha(@RequestBody String jsonStr) {
+        //Usuario usuarioSalvo = usuarioService.salvar(usuario);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = "";
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        JSONObject jsonObj = new JSONObject(jsonStr);
+        System.out.println(username);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.alterarSenha(username, jsonObj.get("antiga").toString(), jsonObj.get("nova").toString()));
     }
 
     @PutMapping("/{codigo}/ativo")

@@ -44,6 +44,25 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario alterarSenha(String email, String senhaAntiga, String novaSenha) {
+        Optional<Usuario> user = usuarioRepository.findByEmail(email);
+
+        if (!user.isPresent()) {
+            throw new EmptyResultDataAccessException(1);
+        }
+
+        Usuario usuarioSalvo = user.get();
+
+        if (!(new BCryptPasswordEncoder().matches(senhaAntiga, usuarioSalvo.getSenha()))) {
+            throw new EmptyResultDataAccessException(1);
+        }
+
+        usuarioSalvo.setSenha(new BCryptPasswordEncoder().encode(novaSenha));
+        usuarioRepository.save(usuarioSalvo);
+
+        return usuarioSalvo;
+    }
+
     public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
         Usuario usuarioSalvo = buscarUsuarioPeloCodigo(codigo);
         usuarioSalvo.setAtivo(ativo ? 1 : 0);
