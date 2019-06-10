@@ -152,5 +152,4 @@ public class LancamentoService {
 		}
 		return lancamentoSalvo.get();
 	}
-
 }

@@ -28,8 +28,7 @@ public class AppUserDetailsService implements UserDetailsService {
 		Usuario usuario = usuarioOptional
 				.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
 
-		if (usuario.getAtivo() == 0)
-		{
+		if (usuario.getAtivo() == 0) {
 			throw new UsernameNotFoundException("Usuário inativado.");
 		}
 
@@ -42,5 +41,4 @@ public class AppUserDetailsService implements UserDetailsService {
 				.forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescricao().toUpperCase())));
 		return authorities;
 	}
-
 }
