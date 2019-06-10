@@ -101,8 +101,8 @@ public class UsuarioService {
 			Usuario usuario = user.get();
 
 			// Criando token: ID + TIMESTAMP
-			String text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy")) +
-					usuario.getCodigo().toString() + "MessiMaiorQueCR7";
+			String text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ssmmHHddMMyyyy"))
+					+ usuario.getCodigo().toString() + "MessiMaiorQueCR7";
 
 			MessageDigest digest = MessageDigest.getInstance("MD5");
 			byte[] hashBytes = digest.digest(text.getBytes(StandardCharsets.UTF_8));
@@ -116,8 +116,7 @@ public class UsuarioService {
 
 			System.out.println(hash);
 
-//			mailer.enviarEmail("ALGAMONEY-API", Arrays.asList(usuario.getEmail()), "Recuperação de Senha",
-//					hash.toString());
+			mailer.enviarEmail("ALGAMONEY-API", Arrays.asList(usuario.getEmail()), "Recuperação de Senha", hash);
 
 		} catch (NoSuchAlgorithmException e) {
 			// Erro que não irá ocorrer mas tenho que tratar
@@ -138,6 +137,7 @@ public class UsuarioService {
 		usuarioRepository.save(byId);
 	}
 
+	// Converte um array de bytes em String Hexadecimal
 	private String bytesToHex(byte[] hash) {
 		StringBuffer hexString = new StringBuffer();
 		for (int i = 0; i < hash.length; i++) {
